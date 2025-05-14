@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSpeech } from '../context/SpeechContext';
 import { supportedLanguages } from '../config/languages';
-import { FaPlus, FaPencilAlt, FaTrash, FaDownload, FaUser, FaMoon, FaSun, FaSignOutAlt, FaRegCommentDots, FaCog, FaChevronDown, FaChevronUp, FaArrowUp, FaStop, FaBars, FaMicrophoneAlt } from 'react-icons/fa';
+import { FaPlus, FaPencilAlt, FaTrash, FaDownload, FaUser, FaMoon, FaSun, FaSignOutAlt, FaRegCommentDots, FaCog, FaChevronDown, FaChevronUp, FaArrowUp, FaStop, FaBars, FaMicrophoneAlt, FaFileUpload } from 'react-icons/fa';
 import { auth } from '../utils/auth';
 import { chatApi } from '../utils/chatApi';
 import { exportChatToPDF } from '../utils/exportPdf';
@@ -402,7 +402,7 @@ const Chatbot = () => {
         <div
           className={`
             bg-gray-200 dark:bg-gray-800 flex flex-col transition-all duration-300
-            ${sidebarCollapsed ? 'w-0 md:w-12' : 'w-64'}
+            ${sidebarCollapsed ? 'w-0 md:w-9' : 'w-64'}
             md:relative md:z-10 md:h-full
             fixed top-0 left-0 h-full z-50
             transition-transform duration-300
@@ -725,15 +725,12 @@ const Chatbot = () => {
             </h1>
             <div className="flex items-center gap-2">
               <button
-                onClick={handleExportChat}
-                className={`flex items-center justify-end text-blue-600 hover:text-blue-800 dark:text-blue-400 px-3 py-1 rounded transition-colors duration-200 ${
-                  chats.length === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-50 dark:hover:bg-blue-900'
-                }`}
-                disabled={chats.length === 0}
-                title={chats.length === 0 ? 'Start a conversation to enable export' : 'Export chat as PDF'}
+                onClick={() => navigate('/summarize')}
+                className="flex items-center justify-end text-blue-600 hover:text-blue-800 dark:text-blue-400 px-3 py-1 rounded transition-colors duration-200 hover:bg-blue-50 dark:hover:bg-blue-900"
+                title="Summarize PDF"
               >
-                <FaDownload className="mr-1" />
-                <span className="hidden md:inline">Export</span>
+                <FaFileUpload className="mr-1" />
+                <span className="hidden md:inline">Summarize PDF</span>
               </button>
               {/* User Info Dropdown */}
               <div className="relative" ref={headerProfileRef}>
@@ -799,7 +796,7 @@ const Chatbot = () => {
                   <div className="text-blue-500 dark:text-blue-400 mb-4">
                     <FaRegCommentDots size={48} className="mx-auto" />
                   </div>
-                  <h3 className="text-xl md:text-2xl font-semibold mb-4 dark:text-white">Welcome to AI Chat!</h3>
+                  <h3 className="text-xl md:text-2xl font-semibold mb-4 dark:text-white">Welcome to <br />BHARAT AI (BHAAI)</h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-6">Start a conversation by typing a message below. You can:</p>
                   <ul className="text-left text-gray-600 dark:text-gray-300 space-y-2 mb-6">
                     <li className="flex items-center">
